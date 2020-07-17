@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10sp"
+    android:layout_marginRight="10sp"
+    android:layout_marginLeft="10sp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="3sp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/account_circle_yellow"
+            android:id="@+id/profile_pic"
+            android:layout_margin="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User"
+            android:textSize="20sp"
+            android:id="@+id/user_name"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="5sp"
+            android:layout_marginLeft="5sp"
+            android:layout_toRightOf="@id/profile_pic"/>
+
+        <TextView
+            android:id="@+id/date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_name"
+            android:layout_toRightOf="@id/profile_pic"
+            android:layout_marginTop="3dp"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:text="7/2/2020 4:00 PM"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date_time"
+            android:id="@+id/text_post"
+            android:text="Hello, this is my first post"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_marginTop="5sp"
+            android:padding="10sp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300sp"
+            android:layout_below="@id/text_post"
+            android:id="@+id/image_post"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="5sp"
+            android:visibility="gone"
+            android:padding="10sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_post"
+            android:id="@+id/likes_no"
+            android:layout_marginLeft="20sp"
+            android:text="5"
+            android:textColor="@color/colorAccent"
+            android:padding="5sp"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/q"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/likes_no"
+        android:layout_marginTop="5sp">
+
+
+
+        <ImageView
+            android:id="@+id/dislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/star_border"
+            android:layout_marginLeft="10sp"
+            android:background="@drawable/border"
+            android:layout_weight="1"
+            android:padding="3dp"/>
+
+
+        <ImageView
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mode_comment_black"
+            android:layout_marginLeft="10sp"
+            android:layout_marginBottom="10sp"
+            android:background="@drawable/border"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:layout_marginRight="10sp"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

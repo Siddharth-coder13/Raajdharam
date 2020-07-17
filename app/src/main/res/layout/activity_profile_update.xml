@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile_update">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="?android:attr/windowBackground"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/change_profile_pic"
+        android:layout_marginTop="20sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/toolbar"/>
+
+    <EditText
+        android:id="@+id/change_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Change Username"
+        android:layout_below="@id/change_profile_pic"
+        android:layout_marginTop="20sp"
+        android:padding="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"/>
+
+    <EditText
+        android:id="@+id/change_designation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Update designation"
+        android:layout_below="@id/change_username"
+        android:layout_marginTop="20sp"
+        android:padding="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"/>
+
+    <EditText
+        android:id="@+id/change_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Update bio"
+        android:layout_below="@id/change_designation"
+        android:layout_marginTop="20sp"
+        android:padding="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"/>
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40sp"
+        android:background="@drawable/border_button"
+        android:layout_centerHorizontal="true"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle=""/>
+
+</RelativeLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "86633455626",
+    "firebase_url": "https://political-facebook.firebaseio.com",
+    "project_id": "political-facebook",
+    "storage_bucket": "political-facebook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86633455626:android:6af27a4142dca6e48dbff3",
+        "android_client_info": {
+          "package_name": "com.example.political_facebook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86633455626-9vho255f4l3o8qo6k1cfhh5ruu9a7pv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGVjT3oXxmVgFKLPaSjHWybaXnhbHNLMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86633455626-9vho255f4l3o8qo6k1cfhh5ruu9a7pv9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
