@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.political_facebook">
+    package="com.release.political_facebook">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,18 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
-        <activity android:name=".profile_update"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name="com.release.political_facebook.settings"></activity>
         <activity
-            android:name=".CommentActivity"
-            android:parentActivityName=".MainActivity"
+            android:name="com.release.political_facebook.My_posts"
+            android:parentActivityName="com.release.political_facebook.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".serach_user" />
-        <activity android:name=".register" />
-        <activity android:name=".Login_public" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.release.political_facebook.profile_update"
+            android:parentActivityName="com.release.political_facebook.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.release.political_facebook.CommentActivity"
+            android:parentActivityName="com.release.political_facebook.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.release.political_facebook.serach_user"
+            android:parentActivityName="com.release.political_facebook.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.release.political_facebook.register" />
+        <activity android:name="com.release.political_facebook.Login_public" />
+        <activity
+            android:name="com.release.political_facebook.MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>

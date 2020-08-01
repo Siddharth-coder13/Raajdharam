@@ -5,80 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".register"
-    android:background="@color/colorPrimary">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_pic_select"
-        android:layout_width="150dp"
-        android:layout_height="150sp"
-        android:layout_marginTop="30sp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/name"
-        android:src="@drawable/account_circle"
-        app:civ_border_color="@color/colorAccent"
-        app:civ_border_width="2dp"/>
+    android:background="#D5E1F1">
 
 
     <TextView
         android:id="@+id/name"
-        android:layout_above="@id/edit_name"
-        android:layout_marginLeft="20sp"
+        android:textColor="#090044"
+        android:layout_marginStart="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
+        android:layout_above="@id/edit_name"
         android:layout_marginTop="20sp"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"/>
+        android:textSize="20sp"/>
 
     <EditText
         android:id="@+id/edit_name"
-        android:layout_above="@id/account_type"
+        android:layout_above="@id/email_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
-        android:layout_marginTop="10sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
         android:layout_marginBottom="10sp"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/account_type"
         android:layout_above="@id/category"
-        android:layout_marginLeft="20sp"
-        android:layout_marginBottom="10sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginBottom="20sp"
+        android:textColor="#090044"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose account type"
-        android:textSize="20sp"
-        android:textColor="#fff"/>
+        android:text="Are you a"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"/>
 
     <RadioGroup
         android:id="@+id/category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/email_id"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="10sp"
+        android:layout_above="@id/name"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="40sp"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <RadioButton
+            android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Leader"
-            android:textColor="@color/colorAccent"
-            android:buttonTint="#E9BD0A"
+            android:text="Politician"
+            android:layout_marginEnd="50sp"
+            android:layout_marginStart="5sp"
+            android:textColor="#090044"
+            android:buttonTint="#090044"
             android:id="@+id/leader_account"/>
 
         <RadioButton
+            android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Public"
-            android:layout_marginLeft="5sp"
-            android:textColor="@color/colorAccent"
-            android:buttonTint="#e9bd0a"
+            android:text="Person"
+            android:layout_marginStart="50sp"
+            android:layout_marginEnd="5sp"
+            android:textColor="#090044"
+            android:buttonTint="#090044"
             android:id="@+id/public_account"
             android:checked="true"/>
 
@@ -87,51 +79,49 @@
 
     <TextView
         android:id="@+id/email_id"
+        android:textColor="#090044"
         android:layout_above="@id/edit_email"
-        android:layout_marginLeft="20sp"
+        android:layout_marginStart="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Email_id"
         android:layout_marginTop="20sp"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"
-        android:inputType="textEmailAddress"/>
+        android:textSize="20sp"/>
 
     <EditText
         android:id="@+id/edit_email"
         android:layout_above="@id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
         android:textSize="20sp"
-        android:textColor="#FFFFFF"/>
+        android:inputType="textEmailAddress"/>
 
 
     <TextView
         android:id="@+id/password"
-        android:layout_marginLeft="20sp"
+        android:layout_marginStart="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password"
+        android:textColor="#090044"
         android:layout_marginTop="20sp"
         android:layout_above="@id/edit_password"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"/>
+        android:textSize="20sp"/>
 
 
     <EditText
         android:id="@+id/edit_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="20sp"
         android:hint="Choose a strong password"
         android:inputType="textPassword"
         android:layout_above="@id/register"
-        android:textColorHint="#e9bd0a"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"/>
+        android:textSize="18sp"/>
 
     <!--
 
@@ -164,10 +154,11 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50sp"
+        android:layout_marginBottom="100sp"
         android:layout_marginTop="20sp"
-        android:layout_marginRight="20sp"
-        android:textColor="@color/colorPrimary"
+        android:layout_marginEnd="20sp"
+        android:textColor="#fff"
+        android:background="@drawable/border_button"
         android:layout_centerHorizontal="true"/>
 
     <ProgressBar

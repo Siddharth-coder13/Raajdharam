@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:86633455626:android:6af27a4142dca6e48dbff3",
         "android_client_info": {
-          "package_name": "com.example.political_facebook"
+          "package_name": "com.release.political_facebook"
         }
       },
       "oauth_client": [

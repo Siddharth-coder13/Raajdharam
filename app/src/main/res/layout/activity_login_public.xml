@@ -5,84 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login_public"
-    android:background="#090044">
+    android:background="#D5E1F1">
 
-
-    <ImageView
-        android:id="@+id/marine_life"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:src="@drawable/marine_life"
-        android:scaleType="fitStart"/>
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
+        android:layout_marginTop="70sp"
+        android:textSize="30sp"
+        android:text="Welcome to Raj Dharam"
+        android:layout_centerHorizontal="true"
+        android:textColor="#090044"/>
+
+
 
     <TextView
         android:id="@+id/email_id"
-        android:layout_above="@id/edit_email"
-        android:layout_marginLeft="20sp"
+        android:layout_below="@id/welcome"
+        android:layout_marginStart="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Email_id"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="130sp"
         android:textSize="20sp"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#090044"/>
 
     <EditText
         android:id="@+id/edit_email"
-        android:layout_above="@id/password"
+        android:layout_below="@id/email_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
         android:layout_marginTop="10sp"
         android:textSize="20sp"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#090044"/>
 
 
     <TextView
         android:id="@+id/password"
-        android:layout_marginLeft="20sp"
+        android:layout_marginStart="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
         android:layout_marginTop="20sp"
-        android:layout_above="@id/edit_password"
+        android:layout_below="@id/edit_email"
         android:textSize="20sp"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#090044"/>
 
 
     <EditText
         android:id="@+id/edit_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginRight="20sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
         android:layout_marginTop="10sp"
-        android:layout_above="@id/login"
+        android:layout_below="@id/password"
         android:textSize="20sp"
         android:inputType="textPassword"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#090044"/>
+
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#2962FF"
+        android:text="forgot password?"
+        android:layout_marginTop="10sp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30sp"
+        android:layout_below="@id/edit_password"/>
 
     <TextView
         android:id="@+id/need_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edit_password"
+        android:layout_below="@id/login"
         android:text="Don't have an account?"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="25sp"
-        android:layout_marginRight="10sp"
-        android:layout_toLeftOf="@id/login"/>
+        android:textColor="#090044"
+        android:layout_marginTop="10sp"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/need_account"
-        android:layout_marginRight="30sp"
-        android:layout_toLeftOf="@id/login"
+        android:layout_marginEnd="30sp"
         android:text="Sign up"
-        android:textColor="#FACC04" />
+        android:textColor="#2962FF"
+        android:layout_marginBottom="5sp"
+        android:layout_centerHorizontal="true"/>
 
 
     <Button
@@ -90,11 +107,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign in"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50sp"
-        android:layout_alignParentRight="true"
+        android:background="@drawable/border_button"
+        android:layout_below="@id/forgot_password"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20sp"
-        android:layout_marginRight="20sp"/>
+        android:textColor="#fff"
+        android:layout_marginEnd="20sp"/>
 
     <ProgressBar
         android:layout_width="wrap_content"

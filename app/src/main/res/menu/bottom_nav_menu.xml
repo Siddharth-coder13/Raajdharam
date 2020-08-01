@@ -3,7 +3,6 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
 
     <item
@@ -13,7 +12,6 @@
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/notifications"
         android:title="@string/title_notifications" />
 
 </menu>

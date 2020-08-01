@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settings"
+    android:background="#D5E1F1">
+
+    <ImageView
+        android:layout_width="35sp"
+        android:layout_height="35sp"
+        android:src="@drawable/ic_home_purple"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="10sp"/>
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_toStartOf="@id/settings_text"
+        android:src="@drawable/ic_settings_purple"
+        android:layout_marginEnd="10sp"
+        android:layout_marginTop="17sp"/>
+
+    <TextView
+        android:id="@+id/settings_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20sp"
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimary"/>
+
+    <ImageView
+        android:id="@+id/notification_image"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_below="@id/settings_text"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_notifications_purple" />
+
+    <TextView
+        android:id="@+id/notification_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notifications"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:layout_below="@id/settings_text"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/notification_image"/>
+
+    <ImageView
+        android:id="@+id/privacy_image"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_below="@id/notification_image"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_security_purple" />
+
+    <TextView
+        android:id="@+id/privacy_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Privacy"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:layout_below="@id/notification_image"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/privacy_image"/>
+
+    <ImageView
+        android:id="@+id/invite_image"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_below="@id/privacy_image"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_people_outline_purple" />
+
+    <TextView
+        android:id="@+id/invite_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Invite"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:layout_below="@id/privacy_image"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/invite_image"/>
+
+    <ImageView
+        android:id="@+id/help_image"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_below="@id/invite_image"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_help_outline_purple" />
+
+    <TextView
+        android:id="@+id/help_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:layout_below="@id/invite_image"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/help_image"/>
+
+    <ImageView
+        android:id="@+id/feedback_image"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_below="@id/help_image"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_feedback_purple" />
+
+    <TextView
+        android:id="@+id/feedback_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Feedback"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:layout_below="@id/help_image"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/feedback_image"/>
+
+    <ImageView
+        android:id="@+id/logout_image"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_below="@id/feedback_image"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_account_circle_purple" />
+
+    <TextView
+        android:id="@+id/logout_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:layout_below="@id/feedback_image"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/logout_image"/>
+
+    <RelativeLayout
+        android:id="@+id/notification_relative"
+        android:layout_width="300sp"
+        android:layout_height="150sp"
+        android:background="#fff"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/question1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do you want to turn off the notifications?"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin = "10sp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/question1_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textSize="20sp"
+            android:textColor="#FD0303"
+            android:layout_below="@id/question1"
+            android:layout_marginStart="50sp"
+            android:layout_marginTop="20sp"/>
+
+        <TextView
+            android:id="@+id/question1_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:layout_below="@id/question1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50sp"
+            android:layout_marginTop="20sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/logout_relative"
+        android:layout_width="300sp"
+        android:layout_height="150sp"
+        android:background="#fff"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/question2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do you want to log out ?"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin = "10sp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/question2_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textSize="20sp"
+            android:textColor="#FD0303"
+            android:layout_below="@id/question2"
+            android:layout_marginStart="50sp"
+            android:layout_marginTop="20sp"/>
+
+        <TextView
+            android:id="@+id/question2_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:layout_below="@id/question2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50sp"
+            android:layout_marginTop="20sp"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
