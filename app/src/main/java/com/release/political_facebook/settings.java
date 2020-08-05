@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class settings extends AppCompatActivity {
     private RelativeLayout notification_relative, logout_relative;
     private TextView q1_cancel,q2_cancel;
     private TextView q1_yes,q2_yes;
+    private ImageView home;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -31,9 +33,9 @@ public class settings extends AppCompatActivity {
         help = findViewById(R.id.help_text);
         feedback = findViewById(R.id.feedback_text);
         logout = findViewById(R.id.logout_text);
+        home = findViewById(R.id.home_back);
 
         mAuth = FirebaseAuth.getInstance();
-        //mUser = mAuth.getCurrentUser();
 
         notification_relative = findViewById(R.id.notification_relative);
         q1_cancel = findViewById(R.id.question1_cancel);
@@ -67,10 +69,18 @@ public class settings extends AppCompatActivity {
                 logout_relative.setVisibility(View.GONE);
             }
         });
+
         q2_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
+                finish();
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });

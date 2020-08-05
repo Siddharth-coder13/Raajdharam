@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -122,6 +123,20 @@ public class my_postsAdapter extends RecyclerView.Adapter<my_postsAdapter.ViewHo
             }
         });
 
+        holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.save.getTag().equals("save")){
+                    FirebaseDatabase.getInstance().getReference().child("Save posts").child(user.getUid())
+                            .child(my_posts.get(i).getPost_id()).setValue(true);
+                    holder.saved.setText("Saved");
+                }
+                else{
+                    Toast.makeText(c, "Already saved", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
 
         if(isPhoto) {
@@ -153,8 +168,8 @@ public class my_postsAdapter extends RecyclerView.Adapter<my_postsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        ImageView image_post,profile_pic, comment, dislike,like;
-        TextView user_name,text_post, date_time, likes,dislikes;
+        ImageView image_post,profile_pic, comment, dislike,like,save;
+        TextView user_name,text_post, date_time, likes,dislikes,saved;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.image_post = itemView.findViewById(R.id.image_post);
@@ -167,6 +182,8 @@ public class my_postsAdapter extends RecyclerView.Adapter<my_postsAdapter.ViewHo
             this.dislike = itemView.findViewById(R.id.dislike);
             this.like = itemView.findViewById(R.id.like);
             this.dislikes = itemView.findViewById(R.id.dislike_no);
+            this.save = itemView.findViewById(R.id.save);
+            this.saved = itemView.findViewById(R.id.save_text);
         }
     }
 
@@ -181,11 +198,11 @@ public class my_postsAdapter extends RecyclerView.Adapter<my_postsAdapter.ViewHo
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child(user.getUid()).exists()){
-                    imageView.setImageResource(R.drawable.fullstar);
+                    imageView.setImageResource(R.drawable.ic_thumb_up_purple);
                     imageView.setTag("liked");
                 }
                 else{
-                    imageView.setImageResource(R.drawable.star_border);
+                    imageView.setImageResource(R.drawable.ic_thumb_up_white);
                     imageView.setTag("like");
                 }
             }
@@ -234,7 +251,7 @@ public class my_postsAdapter extends RecyclerView.Adapter<my_postsAdapter.ViewHo
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 nLike = (int) snapshot.getChildrenCount();
-                likes.setText(nLike+ "likes");
+                likes.setText(String.valueOf(nLike));
             }
 
             @Override

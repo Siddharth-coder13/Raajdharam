@@ -27,6 +27,7 @@ import com.release.political_facebook.R;
 import com.release.political_facebook.Adapter.postAdapter;
 import com.release.political_facebook.model.post;
 import com.release.political_facebook.model.userModel;
+import com.release.political_facebook.new_post;
 import com.release.political_facebook.serach_user;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,6 +71,8 @@ public class HomeFragment extends Fragment {
     private FirebaseUser user;
     private String post_id;
     private String image_uri;
+    private ImageView add_post;
+    private ImageView hide;
 
 
 
@@ -89,6 +92,8 @@ public class HomeFragment extends Fragment {
         sendButton = (Button) root.findViewById(R.id.sendButton);
         nav_image = (ImageView) root.findViewById(R.id.image);
         searchView = (ImageView) root.findViewById(R.id.search_view);
+        add_post = (ImageView) root.findViewById(R.id.new_post);
+        hide = (ImageView) root.findViewById(R.id.hide);
 
         //Firebase setup
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -121,8 +126,14 @@ public class HomeFragment extends Fragment {
         //Like The post
         dislike = (ImageView) root.findViewById(R.id.dislike);
 
+        add_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), new_post.class));
+            }
+        });
 
-        editText.addTextChangedListener(new TextWatcher() {
+        /*editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -158,7 +169,7 @@ public class HomeFragment extends Fragment {
                 editText.setText("");
                 Toast.makeText(getActivity(), "Message sent", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

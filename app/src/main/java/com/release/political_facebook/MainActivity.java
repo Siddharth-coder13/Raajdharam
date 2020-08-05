@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             bio.setText(m.getBio());
                             designation.setText(m.getDesignation());
                             image_url = m.getImageUrl();
-                            Glide.with(MainActivity.this).load(m.getImageUrl()).into(imageView);
+                            Glide.with(getApplicationContext()).load(m.getImageUrl()).into(imageView);
                         }
 
                         @Override
@@ -80,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
-                }
-                else{
-                    startActivity(new Intent(MainActivity.this,Login_public.class));
-                    finish();
                 }
             }
         });
@@ -113,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }else if(id == R.id.notification){
                     // open notification
-
+                    startActivity(new Intent(MainActivity.this,dashboard.class));
                 }else if(id == R.id.settings){
                     // open settings
                     startActivity(new Intent(MainActivity.this,settings.class));
