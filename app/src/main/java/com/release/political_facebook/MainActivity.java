@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView designation;
     private ImageView edit;
     private String image_url;
+    FirebaseUser user;
 
 
     @Override
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = mAuth.getCurrentUser();
+                user = mAuth.getCurrentUser();
                 if(user != null){
                     String mUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(mUid);
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
+                }else {
+                    Intent i = new Intent(MainActivity.this, Login_public.class);
+                    startActivity(i);
+                    finish();
                 }
             }
         });
@@ -105,8 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if(id == R.id.my_posts){
                     //open my posts
-                    startActivity(new Intent(MainActivity.this,My_posts.class));
-
+                    //startActivity(new Intent(MainActivity.this,My_posts.class));
+                    Intent i = new Intent(MainActivity.this,My_posts.class);
+                    i.putExtra("UserId",user.getUid());
+                    startActivity(i);
                 }else if(id == R.id.notification){
                     // open notification
                     startActivity(new Intent(MainActivity.this,dashboard.class));

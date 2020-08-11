@@ -65,6 +65,8 @@ public class new_post extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         user_info();
+        post.setEnabled(false);
+        post_anonymously.setEnabled(false);
 
         text_post.addTextChangedListener(new TextWatcher() {
             @Override
@@ -78,7 +80,7 @@ public class new_post extends AppCompatActivity {
                     post_anonymously.setEnabled(true);
                 } else {
                     post.setEnabled(false);
-                    post_anonymously.setEnabled(true);
+                    post_anonymously.setEnabled(false);
                 }
             }
 

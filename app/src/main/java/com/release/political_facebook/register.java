@@ -173,6 +173,7 @@ public class register extends AppCompatActivity {
                             userModels.setName(name);
                             userModels.setUser_id(id);
                             userModels.setImageUrl(image);
+                            userModels.setAccount(account_type);
                             databaseReference.setValue(userModels);
 
                             finish();

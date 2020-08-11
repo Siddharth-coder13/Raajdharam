@@ -16,6 +16,7 @@ import com.release.political_facebook.MainActivity;
 import com.release.political_facebook.R;
 import com.release.political_facebook.model.post;
 import com.release.political_facebook.model.userModel;
+import com.release.political_facebook.poli_posts;
 import com.release.political_facebook.ui.home.HomeFragment;
 
 import java.io.File;
@@ -32,7 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class postAdapter extends RecyclerView.Adapter<viewHolder> {
+public class poli_postAdapter extends RecyclerView.Adapter<viewHolder> {
 
     private ImageView imageView;
     private TextView textView;
@@ -42,10 +43,10 @@ public class postAdapter extends RecyclerView.Adapter<viewHolder> {
     private int nDisLike;
 
 
-    HomeFragment c ;
+    poli_posts c;
     ArrayList<post> posts;
 
-    public postAdapter(HomeFragment c, ArrayList<post> posts) {
+    public poli_postAdapter(poli_posts c, ArrayList<post> posts) {
         this.c = c;
         this.posts = posts;
     }

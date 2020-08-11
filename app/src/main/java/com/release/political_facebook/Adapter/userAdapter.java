@@ -1,6 +1,7 @@
 package com.release.political_facebook.Adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,8 +22,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.release.political_facebook.user_profile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -76,6 +80,8 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
                             .child("Following").child(UserModel.getUser_id()).setValue(true);
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(UserModel.getUser_id())
                             .child("Followers").child(firebaseUser.getUid()).setValue(true);
+
+                    addNotification(UserModel.getUser_id());
                 }
                 else {
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
@@ -86,6 +92,17 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
             }
         });
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = mcontext.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
+                editor.putString("profileId",UserModel.getUser_id());
+                editor.apply();
+
+                ((FragmentActivity)mcontext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new user_profile()).commit();
+            }
+        });
 
     }
 
@@ -132,5 +149,18 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
 
             }
         });
+    }
+
+    private void addNotification(String userId){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userId);
+
+        HashMap<String,Object> hashMap = new HashMap<>();
+        hashMap.put("userId",user.getUid());
+        hashMap.put("text","started following you");
+        hashMap.put("postId", "");
+        hashMap.put("isPost",false);
+
+        reference.setValue(hashMap);
     }
 }

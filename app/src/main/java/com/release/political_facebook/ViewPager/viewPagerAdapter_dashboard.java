@@ -1,4 +1,4 @@
-package com.release.political_facebook;
+package com.release.political_facebook.ViewPager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,13 +9,13 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class viewPagerAdapter extends FragmentPagerAdapter {
+public class viewPagerAdapter_dashboard extends FragmentPagerAdapter {
 
     private final List<Fragment> fragmentList = new ArrayList<>();
     private final List<String> fragmentTitles = new ArrayList<>();
 
 
-    public viewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+    public viewPagerAdapter_dashboard(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 

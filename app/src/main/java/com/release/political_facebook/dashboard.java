@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
+import com.release.political_facebook.ViewPager.viewPagerAdapter_dashboard;
 
 public class dashboard extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class dashboard extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPagerAdapter adapter = new viewPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        viewPagerAdapter_dashboard adapter = new viewPagerAdapter_dashboard(getSupportFragmentManager(),tabLayout.getTabCount());
 
         adapter.addFragments(new notifications_fragement(),"Notifications");
         adapter.addFragments(new saved_posts_fragement(),"Saved posts");

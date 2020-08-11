@@ -7,17 +7,27 @@ public class userModel {
     private String ImageUrl;
     private String designation;
     private String bio;
+    private String account;
 
     public userModel(){
 
     }
 
-    public userModel(String User_id, String name, String imageUrl, String designation, String bio) {
+    public userModel(String User_id, String name, String imageUrl, String designation, String bio, String account) {
         this.User_id = User_id;
         this.name = name;
         this.ImageUrl = imageUrl;
         this.designation = designation;
         this.bio = bio;
+        this.account = account;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getUser_id() {

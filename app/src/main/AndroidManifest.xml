@@ -12,16 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
-        <activity android:name=".new_post"
+        <activity android:name=".privacy"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".settings"></activity>
+        <activity
+            android:name=".user_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".new_post"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".dashboard"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".settings"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".settings"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".My_posts"
             android:parentActivityName=".MainActivity"

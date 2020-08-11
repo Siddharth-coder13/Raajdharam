@@ -1,12 +1,18 @@
 package com.release.political_facebook;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class My_posts extends AppCompatActivity {
+public class My_posts extends Fragment {
 
     private RecyclerView recyclerView;
     private my_postsAdapter adapter;
@@ -41,8 +47,39 @@ public class My_posts extends AppCompatActivity {
     private int nFollowers;
     private int nFollowing;
 
-
+    @Nullable
     @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_my_posts,container,false);
+
+        toolbar = view.findViewById(R.id.toolbar_myPost);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        username = view.findViewById(R.id.name_text);
+        profile_pic = view.findViewById(R.id.user_profile_pic);
+        followers = view.findViewById(R.id.followers_text);
+        following = view.findViewById(R.id.following_text);
+
+        recyclerView = view.findViewById(R.id.recyclerView_myPosts);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        my_posts = new ArrayList<>();
+        adapter = new my_postsAdapter(getContext(),my_posts);
+        recyclerView.setAdapter(adapter);
+
+        Intent i = getActivity().getIntent();
+        userId = i.getStringExtra("UserId");
+
+        User_info();
+        getFollowers();
+        getPosts();
+
+        return view;
+    }
+
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_posts);
@@ -65,16 +102,19 @@ public class My_posts extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         reference = FirebaseDatabase.getInstance().getReference().child("Posts");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        /*FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user != null){
             userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         }
+
+        Intent i = getIntent();
+        userId = i.getStringExtra("UserId");
 
         User_info();
         getFollowers();
         getPosts();
 
-    }
+    }*/
 
     public void User_info(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
@@ -113,8 +153,8 @@ public class My_posts extends AppCompatActivity {
             }
         });
 
-
-        reference1.child("Following").addValueEventListener(new ValueEventListener() {
+        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("Follow").child(userId).child("Following");
+        reference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 nFollowing = (int) snapshot.getChildrenCount();

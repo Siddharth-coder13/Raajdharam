@@ -157,4 +157,17 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void addNotification(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(publisher_id);
+
+        HashMap<String,Object> hashMap = new HashMap<>();
+        hashMap.put("userId",user.getUid());
+        hashMap.put("text","liked your post");
+        hashMap.put("postId", post_id);
+        hashMap.put("isPost",true);
+
+        reference.setValue(hashMap);
+    }
 }
