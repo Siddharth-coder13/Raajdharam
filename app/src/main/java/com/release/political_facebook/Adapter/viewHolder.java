@@ -12,7 +12,7 @@ import com.release.political_facebook.R;
 public class viewHolder extends RecyclerView.ViewHolder {
 
     ImageView image_post,profile_pic, comment, dislike,like,save;
-    TextView user_name,text_post, date_time, likes,dislikes,saved;
+    TextView user_name,text_post, date_time, likes,dislikes,saved,heading;
     public viewHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -24,6 +24,7 @@ public class viewHolder extends RecyclerView.ViewHolder {
         this.likes = itemView.findViewById(R.id.likes_no);
         this.comment = itemView.findViewById(R.id.comment);
         this.dislike = itemView.findViewById(R.id.dislike);
+        this.heading = itemView.findViewById(R.id.heading);
         this.like = itemView.findViewById(R.id.like);
         this.dislikes = itemView.findViewById(R.id.dislike_no);
         this.save = itemView.findViewById(R.id.save);

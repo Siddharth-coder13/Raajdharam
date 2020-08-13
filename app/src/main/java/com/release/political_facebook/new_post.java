@@ -1,8 +1,12 @@
 package com.release.political_facebook;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,6 +42,8 @@ public class new_post extends AppCompatActivity {
     private DatabaseReference mdatabaseReference;
     private String post_id;
     private String userId;
+    private String image_uri;
+    private int RC_PHOTO_PICKER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,16 @@ public class new_post extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        image_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
+            }
+        });
 
         user_info();
         post.setEnabled(false);
@@ -95,7 +111,7 @@ public class new_post extends AppCompatActivity {
 
 
                 String currentDateAndTime = java.text.DateFormat.getDateTimeInstance().format(new Date());
-                com.release.political_facebook.model.post m = new post(user.getDisplayName(), text_post.getText().toString(),null, currentDateAndTime,post_id , userId);
+                com.release.political_facebook.model.post m = new post(user.getDisplayName(), text_post.getText().toString(),null, currentDateAndTime,post_id , userId, heading.getText().toString());
 
                 mdatabaseReference.child(post_id).setValue(m);
 
@@ -113,7 +129,7 @@ public class new_post extends AppCompatActivity {
 
 
                 String currentDateAndTime = java.text.DateFormat.getDateTimeInstance().format(new Date());
-                com.release.political_facebook.model.post m = new post("Anonymous", text_post.getText().toString(),null, currentDateAndTime,post_id , FirebaseAuth.getInstance().getCurrentUser().getUid());
+                com.release.political_facebook.model.post m = new post("Anonymous", text_post.getText().toString(),image_uri, currentDateAndTime,post_id , FirebaseAuth.getInstance().getCurrentUser().getUid(), heading.getText().toString());
 
                 mdatabaseReference.child(post_id).setValue(m);
 
@@ -122,6 +138,16 @@ public class new_post extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK){
+            image_uri = data.getData().toString();
+            Glide.with(new_post.this).load(image_uri).into(image_post);
+        }
     }
 
     public void user_info(){

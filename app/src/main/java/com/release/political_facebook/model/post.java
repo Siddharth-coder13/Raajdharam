@@ -4,20 +4,29 @@ package com.release.political_facebook.model;
 
 public class post {
 
-    private String user_name, text_post,image_post,date_time, post_id, publisher;
+    private String user_name, text_post,image_post,date_time, post_id, publisher, heading;
 
     public post(){
 
     }
 
     public post(String user_name, String text_post, String image_post, String date_time,
-                String post_id, String publisher) {
+                String post_id, String publisher, String heading) {
         this.user_name = user_name;
         this.text_post = text_post;
         this.image_post = image_post;
         this.date_time = date_time;
         this.post_id = post_id;
         this.publisher = publisher;
+        this.heading = heading;
+    }
+
+    public String getHeading() {
+        return heading;
+    }
+
+    public void setHeading(String heading) {
+        this.heading = heading;
     }
 
     public String getPost_id() {

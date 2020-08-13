@@ -92,6 +92,7 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
         holder.date_time.setText(posts.get(i).getDate_time());
 
         boolean isPhoto = posts.get(i).getImage_post() != null;
+        boolean isHeading = posts.get(i).getHeading() !=null;
 
         isLike(posts.get(i).getPost_id(),holder.dislike);
         nrLikes(holder.likes, posts.get(i).getPost_id());
@@ -148,6 +149,9 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
         });
 
 
+        if(isHeading){
+            holder.heading.setVisibility(View.VISIBLE);
+        }
 
         if(isPhoto) {
             imageView.setVisibility(View.VISIBLE);

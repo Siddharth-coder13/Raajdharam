@@ -1,5 +1,6 @@
 package com.release.political_facebook;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.release.political_facebook.ui.home.HomeFragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView edit;
     private String image_url;
     FirebaseUser user;
+    private Fragment homeFragment;
 
 
     @Override
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        homeFragment  = getFragmentManager().findFragmentById(R.id.nav_host_fragment);
 
         mAuth = FirebaseAuth.getInstance();
         getSupportActionBar().hide();
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         username = header.findViewById(R.id.user_nav);
         bio = header.findViewById(R.id.experience);
         designation = header.findViewById(R.id.designation);
+
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
@@ -88,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //getFragment();
 
 
         edit.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +135,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void getFragment(){
+        ImageView imageView = homeFragment.getView().findViewById(R.id.drawer_main);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+    }
 
 
 }

@@ -117,11 +117,46 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30sp"
         android:layout_marginEnd="30sp"
-        android:layout_marginBottom="20sp"
+        android:layout_marginBottom="10sp"
         android:hint="Choose a strong password"
         android:inputType="textPassword"
-        android:layout_above="@id/register"
+        android:layout_above="@id/constituency"
         android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/constituency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linear"
+        android:text="Set Location"
+        android:layout_marginStart="30sp"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/register"
+        android:layout_marginStart="30sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginTop="10sp">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/state_list"
+            android:textAlignment="center"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+
+    </LinearLayout>
 
     <!--
 
