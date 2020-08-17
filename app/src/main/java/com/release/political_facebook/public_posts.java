@@ -94,47 +94,7 @@ public class public_posts extends Fragment {
     }
 
     private void attachDatabaseReadListener() {
-        /*if(mChildEventListener == null) {
-            mChildEventListener = new ChildEventListener() {
-                String mUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    public_posts.clear();
-                    for(DataSnapshot snapshot : dataSnapshot.) {
-                        post m = snapshot.getValue(post.class);
-                        for (String id : followingList) {
-                            if (m.getPublisher().equals(id)) {
-                                public_posts.add(m);
-                            }
-                        }
 
-                        if (m.getPublisher().equals(mUid)) {
-                            public_posts.add(m);
-                        }
-                    }
-                    adapter.notifyDataSetChanged();
-
-                }
-
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            };
-            mdatabaseReference.addChildEventListener(mChildEventListener);
-        }*/
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -191,17 +151,7 @@ public class public_posts extends Fragment {
         });
     }
 
-    /*private void addNotification(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(pr);
 
-        HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put("userId",user.getUid());
-        hashMap.put("text","liked your post");
-        hashMap.put("postId", postId);
-        hashMap.put("isPost",true);
-
-        reference.setValue(hashMap);*/
 
 
 }

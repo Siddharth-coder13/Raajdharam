@@ -99,7 +99,7 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
         //create_leaderBoards(posts.get(i).getPost_id(), nLike);
         isDislike(posts.get(i).getPost_id(),holder.like);
         nrDislikes(holder.dislikes,posts.get(i).getPost_id());
-        isSaved(posts.get(i).getPost_id(),holder.save);
+        isSaved(posts.get(i).getPost_id(),holder.save, holder.saved);
 
         holder.dislike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +140,7 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
                 if(holder.save.getTag().equals("save")){
                     FirebaseDatabase.getInstance().getReference().child("Saved posts").child(user.getUid())
                             .child(posts.get(i).getPost_id()).setValue(true);
-                    holder.saved.setText("Saved");
+
                 }
                 else{
                     Toast.makeText(c.getContext(), "Already saved", Toast.LENGTH_SHORT).show();
@@ -181,7 +181,7 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
         return posts.size();
     }
 
-    private void isSaved(final String post_id, final ImageView imageView){
+    private void isSaved(final String post_id, final ImageView imageView, final TextView textView){
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Saved posts")
@@ -192,6 +192,7 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child(post_id).exists()){
                     imageView.setTag("saved");
+                    textView.setText("Saved");
                 }
                 else{
                     imageView.setTag("save");

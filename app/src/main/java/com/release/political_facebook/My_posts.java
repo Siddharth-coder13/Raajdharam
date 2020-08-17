@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class My_posts extends Fragment {
+public class My_posts extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private my_postsAdapter adapter;
@@ -47,7 +49,7 @@ public class My_posts extends Fragment {
     private int nFollowers;
     private int nFollowing;
 
-    @Nullable
+    /*@Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_my_posts,container,false);
@@ -77,9 +79,11 @@ public class My_posts extends Fragment {
         getPosts();
 
         return view;
-    }
+    }*/
 
-    /*@Override
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_posts);
@@ -92,6 +96,9 @@ public class My_posts extends Fragment {
         profile_pic = findViewById(R.id.user_profile_pic);
         followers = findViewById(R.id.followers_text);
         following = findViewById(R.id.following_text);
+
+        SharedPreferences prefs = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        userId = prefs.getString("profileid","none");
 
         recyclerView = findViewById(R.id.recyclerView_myPosts);
         recyclerView.setHasFixedSize(true);
@@ -108,13 +115,13 @@ public class My_posts extends Fragment {
         }
 
         Intent i = getIntent();
-        userId = i.getStringExtra("UserId");
+        userId = i.getStringExtra("UserId");*/
 
         User_info();
         getFollowers();
         getPosts();
 
-    }*/
+    }
 
     public void User_info(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);

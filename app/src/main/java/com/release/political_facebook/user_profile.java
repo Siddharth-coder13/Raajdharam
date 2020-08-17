@@ -32,7 +32,7 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class user_profile extends Fragment {
+public class user_profile extends AppCompatActivity {
 
     private Toolbar toolbar;
     private CircleImageView profile_pic;
@@ -43,38 +43,8 @@ public class user_profile extends Fragment {
     private Button view_posts;
     private String profileId;
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_user_profile,container,false);
-
-        toolbar = view.findViewById(R.id.toolbar_userProfile);
-        profile_pic = view.findViewById(R.id.profile_pic_user);
-        username = view.findViewById(R.id.user_name_user);
-        designation = view.findViewById(R.id.designation_user);
-        bio = view.findViewById(R.id.bio);
-        follow = view.findViewById(R.id.follow);
-        view_posts = view.findViewById(R.id.view_post);
-
-        SharedPreferences prefs = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
-        profileId = prefs.getString("profileId","none");
-
-        userinfo();
-
-        view_posts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(),My_posts.class);
-                intent.putExtra("UserId",profileId);
-                startActivity(intent);
-            }
-        });
-
-        return view;
-
-    }
-
-    /*Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
@@ -88,12 +58,10 @@ public class user_profile extends Fragment {
         view_posts = findViewById(R.id.view_post);
 
         SharedPreferences prefs = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
-        profileId = prefs.getString("profileId","none");
+        profileId = prefs.getString("profileid","none");
 
-        /*Intent i = getIntent();
-        userId = i.getStringExtra("UserId");
         //Toast.makeText(this, userId, Toast.LENGTH_SHORT).show();
-        //userinfo();
+        userinfo();
 
         view_posts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +73,7 @@ public class user_profile extends Fragment {
         });
 
 
-    }*/
+    }
 
     public void userinfo(){
 

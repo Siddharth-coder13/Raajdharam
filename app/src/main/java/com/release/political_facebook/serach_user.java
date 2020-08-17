@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +15,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.release.political_facebook.Adapter.userAdapter;
 import com.release.political_facebook.model.userModel;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +27,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class serach_user extends AppCompatActivity {
 
@@ -32,6 +37,8 @@ public class serach_user extends AppCompatActivity {
     private ImageView imageView;
     private Toolbar toolbar;
     private ImageView arrow_back;
+
+    String profileId;
 
     EditText search_bar;
 
@@ -43,6 +50,9 @@ public class serach_user extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_search);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        SharedPreferences prefs = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        profileId = prefs.getString("profileid","none");
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -126,6 +136,19 @@ public class serach_user extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void addNotification() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(profileId);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userId", user.getUid());
+        hashMap.put("text", "started following you");
+        hashMap.put("postId", "");
+        hashMap.put("isPost", false);
+
+        reference.setValue(hashMap);
     }
 
 }

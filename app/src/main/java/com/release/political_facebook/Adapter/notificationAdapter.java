@@ -1,6 +1,7 @@
 package com.release.political_facebook.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,19 +67,19 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
             public void onClick(View v) {
                 if(notify.isPost()){
                     SharedPreferences.Editor editor = c.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
-                    editor.putString("postId",notify.getPostId());
+                    editor.putString("postid",notify.getPostId());
                     editor.apply();
 
-                    ((FragmentActivity)c).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                           new My_posts()).commit();
+                    /*Intent i = new Intent(c,My_posts.class);
+                    c.startActivity(i);*/
                 }
                 else{
                     SharedPreferences.Editor editor = c.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
-                    editor.putString("profileId",notify.getPostId());
+                    editor.putString("profileid",notify.getPostId());
                     editor.apply();
 
-                    ((FragmentActivity)c).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new user_profile()).commit();
+                    Intent i = new Intent(c,user_profile.class);
+                    c.startActivity(i);
                 }
             }
         });

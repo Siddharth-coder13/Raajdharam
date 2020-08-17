@@ -1,6 +1,7 @@
 package com.release.political_facebook.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,11 +97,11 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = mcontext.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
-                editor.putString("profileId",UserModel.getUser_id());
+                editor.putString("profileid",UserModel.getUser_id());
                 editor.apply();
 
-                ((FragmentActivity)mcontext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new user_profile()).commit();
+                Intent i = new Intent(mcontext,user_profile.class);
+                mcontext.startActivity(i);
             }
         });
 

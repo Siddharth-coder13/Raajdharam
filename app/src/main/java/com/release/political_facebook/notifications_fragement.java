@@ -35,6 +35,7 @@ public class notifications_fragement extends Fragment {
     View view;
 
     /*public notifications_fragement() {
+
     }*/
 
     @Nullable
@@ -46,6 +47,8 @@ public class notifications_fragement extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         //recyclerView.setHasFixedSize(true);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
         notificationList = new ArrayList<>();
         adapter = new notificationAdapter(getContext(),notificationList);
         recyclerView.setAdapter(adapter);
@@ -62,11 +65,10 @@ public class notifications_fragement extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //notificationList.clear();
+                notificationList.clear();
                 notification n = snapshot.getValue(notification.class);
                 notificationList.add(n);
 
-                Collections.reverse(notificationList);
                 adapter.notifyDataSetChanged();
             }
 

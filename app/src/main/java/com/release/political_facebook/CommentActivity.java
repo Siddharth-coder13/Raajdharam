@@ -164,7 +164,7 @@ public class CommentActivity extends AppCompatActivity {
 
         HashMap<String,Object> hashMap = new HashMap<>();
         hashMap.put("userId",user.getUid());
-        hashMap.put("text","liked your post");
+        hashMap.put("text","Commented on your post");
         hashMap.put("postId", post_id);
         hashMap.put("isPost",true);
 
