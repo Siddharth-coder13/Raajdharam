@@ -19,18 +19,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.release.political_facebook.Adapter.public_postAdapter;
+import com.release.political_facebook.Adapter.postAdapter;
 import com.release.political_facebook.model.post;
 import com.release.political_facebook.model.userModel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class public_posts extends Fragment {
 
     private RecyclerView recyclerView;
     private ArrayList<post> public_posts;
-    private public_postAdapter adapter;
+    private postAdapter adapter;
     private ArrayList<String> followingList;
     private ArrayList<String> accountList;
 
@@ -48,7 +47,7 @@ public class public_posts extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         public_posts = new ArrayList<>();
-        adapter = new public_postAdapter(this,public_posts);
+        adapter = new postAdapter(getContext(),public_posts);
         recyclerView.setAdapter(adapter);
 
 

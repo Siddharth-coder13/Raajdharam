@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.release.political_facebook.My_posts;
+import com.release.political_facebook.Post;
 import com.release.political_facebook.R;
 import com.release.political_facebook.model.notification;
 import com.release.political_facebook.model.post;
@@ -70,8 +71,8 @@ public class notificationAdapter extends RecyclerView.Adapter<notificationAdapte
                     editor.putString("postid",notify.getPostId());
                     editor.apply();
 
-                    /*Intent i = new Intent(c,My_posts.class);
-                    c.startActivity(i);*/
+                    Intent i = new Intent(c, Post.class);
+                    c.startActivity(i);
                 }
                 else{
                     SharedPreferences.Editor editor = c.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();

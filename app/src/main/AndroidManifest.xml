@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateAlwaysHidden">
-        <activity android:name=".privacy"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".settings"></activity>
+        <activity android:name=".Post"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".privacy"
+            android:parentActivityName=".settings"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".user_profile"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -3,5 +3,7 @@
     <color name="colorPrimary">#090044</color>
     <color name="colorPrimaryDark">#090044</color>
     <color name="colorAccent">#ffde03</color>
+    <color name="following_color">#000</color>
+    <color name="follow_color">#2962FF</color>
 
 </resources>

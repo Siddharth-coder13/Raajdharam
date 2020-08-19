@@ -20,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.release.political_facebook.Adapter.poli_postAdapter;
-import com.release.political_facebook.Adapter.public_postAdapter;
 import com.release.political_facebook.model.post;
 import com.release.political_facebook.model.userModel;
 

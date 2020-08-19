@@ -1,7 +1,9 @@
 package com.release.political_facebook;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -118,8 +120,11 @@ public class MainActivity extends AppCompatActivity {
                 if(id == R.id.my_posts){
                     //open my posts
                     //startActivity(new Intent(MainActivity.this,My_posts.class));
+                    SharedPreferences.Editor editor = MainActivity.this.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                    editor.putString("profileid",user.getUid());
+                    editor.apply();
+
                     Intent i = new Intent(MainActivity.this,My_posts.class);
-                    i.putExtra("UserId",user.getUid());
                     startActivity(i);
                 }else if(id == R.id.notification){
                     // open notification

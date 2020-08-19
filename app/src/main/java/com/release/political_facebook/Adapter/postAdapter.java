@@ -1,6 +1,8 @@
 package com.release.political_facebook.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.release.political_facebook.CommentActivity;
+import com.release.political_facebook.Post;
 import com.release.political_facebook.R;
 import com.release.political_facebook.model.post;
 import com.release.political_facebook.model.userModel;
@@ -31,19 +34,18 @@ import com.release.political_facebook.user_profile;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
+public class postAdapter extends RecyclerView.Adapter<viewHolder> {
 
     private ImageView imageView;
     private TextView textView;
     private int nLike;
     private int nDisLike;
-    private String userId;
 
 
-    public_posts c ;
-    ArrayList<post> posts;
+    private Context c ;
+    private ArrayList<post> posts;
 
-    public public_postAdapter(public_posts c, ArrayList<post> posts) {
+    public postAdapter(Context c, ArrayList<post> posts) {
         this.c = c;
         this.posts = posts;
     }
@@ -87,31 +89,33 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
             }
         });
 
-        holder.text_post.setText(posts.get(i).getText_post());
+        final post posts1 = posts.get(i);
 
-        holder.date_time.setText(posts.get(i).getDate_time());
+        holder.text_post.setText(posts1.getText_post());
 
-        boolean isPhoto = posts.get(i).getImage_post() != null;
-        boolean isHeading = posts.get(i).getHeading() !=null;
+        holder.date_time.setText(posts1.getDate_time());
 
-        isLike(posts.get(i).getPost_id(),holder.dislike);
-        nrLikes(holder.likes, posts.get(i).getPost_id());
+        boolean isPhoto = posts1.getImage_post() != null;
+        boolean isHeading = posts1.getHeading() !=null;
+
+        isLike(posts1.getPost_id(),holder.dislike);
+        nrLikes(holder.likes, posts1.getPost_id());
         //create_leaderBoards(posts.get(i).getPost_id(), nLike);
-        isDislike(posts.get(i).getPost_id(),holder.like);
-        nrDislikes(holder.dislikes,posts.get(i).getPost_id());
-        isSaved(posts.get(i).getPost_id(),holder.save, holder.saved);
+        isDislike(posts1.getPost_id(),holder.like);
+        nrDislikes(holder.dislikes,posts1.getPost_id());
+        isSaved(posts1.getPost_id(),holder.save, holder.saved);
 
         holder.dislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(holder.dislike.getTag().equals("like")){
-                    FirebaseDatabase.getInstance().getReference().child("Likes").child(posts.get(i).getPost_id())
+                    FirebaseDatabase.getInstance().getReference().child("Likes").child(posts1.getPost_id())
                             .child(user.getUid()).setValue(true);
-                    FirebaseDatabase.getInstance().getReference().child("Dislikes").child(posts.get(i).getPost_id())
+                    FirebaseDatabase.getInstance().getReference().child("Dislikes").child(posts1.getPost_id())
                             .child(user.getUid()).removeValue();
                 }
                 else {
-                    FirebaseDatabase.getInstance().getReference().child("Likes").child(posts.get(i).getPost_id())
+                    FirebaseDatabase.getInstance().getReference().child("Likes").child(posts1.getPost_id())
                             .child(user.getUid()).removeValue();
                 }
             }
@@ -121,14 +125,14 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
             @Override
             public void onClick(View v) {
                 if(holder.like.getTag().equals("dislike")){
-                    FirebaseDatabase.getInstance().getReference().child("Dislikes").child(posts.get(i).getPost_id())
+                    FirebaseDatabase.getInstance().getReference().child("Dislikes").child(posts1.getPost_id())
                             .child(user.getUid()).setValue(true);
-                    FirebaseDatabase.getInstance().getReference().child("Likes").child(posts.get(i).getPost_id())
+                    FirebaseDatabase.getInstance().getReference().child("Likes").child(posts1.getPost_id())
                             .child(user.getUid()).removeValue();
-                    addNotification(posts.get(i).getPublisher(),posts.get(i).getPost_id());
+                    addNotification(posts.get(i).getPublisher(),posts1.getPost_id());
                 }
                 else {
-                    FirebaseDatabase.getInstance().getReference().child("Dislikes").child(posts.get(i).getPost_id())
+                    FirebaseDatabase.getInstance().getReference().child("Dislikes").child(posts1.getPost_id())
                             .child(user.getUid()).removeValue();
                 }
             }
@@ -139,11 +143,11 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
             public void onClick(View v) {
                 if(holder.save.getTag().equals("save")){
                     FirebaseDatabase.getInstance().getReference().child("Saved posts").child(user.getUid())
-                            .child(posts.get(i).getPost_id()).setValue(true);
+                            .child(posts1.getPost_id()).setValue(true);
 
                 }
                 else{
-                    Toast.makeText(c.getContext(), "Already saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "Already saved", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -157,7 +161,7 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
             imageView.setVisibility(View.VISIBLE);
             //textView.setTextSize(15);
             Glide.with(imageView.getContext())
-                    .load(posts.get(i).getImage_post())
+                    .load(posts1.getImage_post())
                     .into(imageView);
         }else{
             //imageView.setVisibility(View.GONE);
@@ -166,10 +170,35 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
         holder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(c.getContext(), CommentActivity.class);
-                intent.putExtra("postid",posts.get(i).getPost_id());
-                intent.putExtra("publisherid",posts.get(i).getPublisher());
-                c.getContext().startActivity(intent);
+                Intent intent = new Intent(c, CommentActivity.class);
+                intent.putExtra("postid",posts1.getPost_id());
+                intent.putExtra("publisherid",posts1.getPublisher());
+                c.startActivity(intent);
+            }
+        });
+
+        holder.image_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences.Editor editor = c.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
+                editor.putString("postid",posts1.getPost_id());
+                editor.apply();
+
+                Intent intent = new Intent(c, Post.class);
+                c.startActivity(intent);
+            }
+        });
+
+        holder.user_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = c.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
+                editor.putString("profileid",posts1.getPublisher());
+                editor.apply();
+
+                Intent i = new Intent(c, user_profile.class);
+                c.startActivity(i);
             }
         });
 
@@ -303,23 +332,6 @@ public class public_postAdapter extends RecyclerView.Adapter<viewHolder> {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 nDisLike = (int) snapshot.getChildrenCount();
                 dislikes.setText(String.valueOf(nDisLike));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    private void getUserId(TextView username, String post_id){
-        Query query = FirebaseDatabase.getInstance().getReference().child("Posts").child(post_id);
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                post p  = snapshot.getValue(post.class);
-                userId = p.getPublisher();
             }
 
             @Override

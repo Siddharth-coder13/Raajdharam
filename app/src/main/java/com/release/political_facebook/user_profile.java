@@ -42,6 +42,7 @@ public class user_profile extends AppCompatActivity {
     private Button follow;
     private Button view_posts;
     private String profileId;
+    FirebaseUser user;
 
 
     @Override
@@ -62,6 +63,12 @@ public class user_profile extends AppCompatActivity {
 
         //Toast.makeText(this, userId, Toast.LENGTH_SHORT).show();
         userinfo();
+        isFollowing(profileId,follow);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(profileId.equals(user.getUid())){
+            follow.setVisibility(View.GONE);
+        }
 
         view_posts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +79,53 @@ public class user_profile extends AppCompatActivity {
             }
         });
 
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(follow.getText().toString().equals("Follow")){
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getUid())
+                            .child("Following").child(profileId).setValue(true);
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId)
+                            .child("Followers").child(user.getUid()).setValue(true);
 
+                    addNotification();
+                }
+                else {
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getUid())
+                            .child("Following").child(profileId).removeValue();
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileId)
+                            .child("Followers").child(user.getUid()).removeValue();
+                }
+            }
+        });
+
+
+    }
+
+    private void isFollowing(final String Userid, final Button button){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Follow")
+                .child(firebaseUser.getUid()).child("Following");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(Userid).exists()){
+                    button.setText("Following");
+                    //button.setBackgroundColor(Color.parseColor("000000"));
+                    //button.setBackgroundColor(getResources().getColor(R.color.following_color));
+                }
+                else{
+                    button.setText("Follow");
+                    //button.setBackgroundColor(Color.parseColor("#2962FF"));
+                    //button.setBackgroundColor(getResources().getColor(R.color.follow_color));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void userinfo(){
@@ -120,7 +173,6 @@ public class user_profile extends AppCompatActivity {
     }*/
 
     private void addNotification(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(profileId);
 
         HashMap<String,Object> hashMap = new HashMap<>();
